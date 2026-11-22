@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel del Docente</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:,">
+</head>
+
+<body class="pagina-panel">
+  <div class="panel">
+
+    <aside class="lateral">
+      <div class="marca">
+        <span class="marca__logo">C.E</span>
+        <span class="marca__nombre">Centro Escolar Marcelina Viuda de Granillo</span>
+      </div>
+
+      <p class="etiqueta">Institución educativa</p>
+      <div class="lateral__institucion">
+        <strong>Centro Escolar Marcelina Viuda de Granillo</strong>
+        <span>Jornada mañana</span>
+      </div>
+
+      <p class="etiqueta">Gestión escolar</p>
+      <nav class="lateral__menu" aria-label="Navegación principal">
+        <a href="#asistencia">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="4" y="5" width="16" height="15" rx="2" />
+            <path d="M4 10h16M8 3v4M16 3v4" />
+            <path d="m9 15 2 2 4-4" />
+          </svg>
+          <span>Asistencia</span>
+        </a>
+        <a href="#estudiantes">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
+          </svg>
+          <span>Estudiantes</span>
+        </a>
+        <a href="#actividades">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="5" y="4" width="14" height="17" rx="2" />
+            <path d="M9 4h6v3H9z" />
+            <path d="M9 12h6M9 16h4" />
+          </svg>
+          <span>Actividades y notas</span>
+        </a>
+      </nav>
+
+      <div class="lateral__usuario">
+        <span class="avatar" id="usuario-avatar">--</span>
+        <div>
+          <strong id="usuario-nombre">Docente</strong>
+          <span>Docente</span>
+        </div>
+        <button type="button" id="btn-salir" aria-label="Cerrar sesión">Salir</button>
+      </div>
+    </aside>
+
+    <div class="panel__principal">
+      <header class="barra">
+        <p class="barra__ruta">C.E Marcelina Viuda de Granillo / <strong id="ruta-actual">Asistencia</strong></p>
+        <p id="fecha-actual">Fecha</p>
+        <span class="avatar" id="barra-avatar">--</span>
+      </header>
+
+      <main class="panel__contenido">
+
+        <p class="sin-resultados" id="aviso-sin-secciones" hidden>
+          Todavía no tienes secciones asignadas. Pide a la dirección que te asigne una para empezar.
+        </p>
+
+        <!-- ================= ASISTENCIA ================= -->
+        <section id="asistencia" class="vista">
+          <p class="etiqueta etiqueta-seccion">C.E Marcelina Viuda de Granillo</p>
+          <div class="encabezado-vista">
+            <div>
+              <h1>Asistencia diaria</h1>
+              <p class="subtitulo">Registra la asistencia de tu sección, de lunes a viernes.</p>
+            </div>
+          </div>
+
+          <div class="filtros">
+            <select id="filtro-seccion" aria-label="Sección"></select>
+            <input type="date" id="filtro-fecha" aria-label="Fecha">
+            <span class="chip" id="dia-semana"></span>
+            <p class="conteo" id="conteo-asistencia">
+              <span>0 Presentes</span>
+              <span>0 Ausentes</span>
+              <span>0 Tarde</span>
+            </p>
+          </div>
+
+          <div class="semana" id="semana"></div>
+
+          <table class="tabla-asistencia">
+            <thead>
+              <tr>
+                <th>Estudiante</th>
+                <th>Registro de asistencia</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpo-asistencia"></tbody>
+          </table>
+
+          <div class="acciones" style="margin-top:16px; align-items:center;">
+            <button type="button" class="boton-principal" id="btn-guardar-asistencia">Guardar asistencia</button>
+            <button type="button" class="boton-secundario" id="btn-todos-presentes">Marcar todos presentes</button>
+            <p class="conteo-estudiantes" id="estado-guardado" role="status"></p>
+          </div>
+        </section>
+
+        <!-- ================= ESTUDIANTES ================= -->
+        <section id="estudiantes" class="vista">
+          <p class="etiqueta etiqueta-seccion">C.E Marcelina Viuda de Granillo</p>
+          <div class="encabezado-vista">
+            <div>
+              <h1>Estudiantes</h1>
+              <p class="subtitulo">Méritos, deméritos y seguimiento formativo.</p>
+            </div>
+            <div class="acciones">
+              <button type="button" class="boton-principal" id="btn-registrar">+ Registrar mérito / demérito</button>
+              <button type="button" class="boton-secundario" id="btn-nuevo-estudiante">+ Nuevo estudiante</button>
+            </div>
+          </div>
+
+          <div class="filtros">
+            <select id="filtro-seccion-estudiantes" aria-label="Sección"></select>
+            <p class="conteo-estudiantes" id="conteo-estudiantes">0 estudiantes en esta sección</p>
+          </div>
+
+          <table class="tabla" id="tabla-estudiantes">
+            <thead>
+              <tr>
+                <th>Estudiante</th>
+                <th>Méritos</th>
+                <th>Deméritos</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+
+          <h2 class="subtitulo-seccion">Seguimiento y mejora</h2>
+
+          <div class="filtros">
+            <p class="conteo-estudiantes">Actualiza el estado cuando observes una mejoría.</p>
+            <select id="filtro-seguimiento" aria-label="Filtrar seguimiento" class="filtro-derecha">
+              <option value="todos">Todos</option>
+              <option value="en_seguimiento">En seguimiento</option>
+              <option value="mejoro">Mejoró</option>
+            </select>
+          </div>
+
+          <table class="tabla" id="tabla-seguimiento">
+            <thead>
+              <tr>
+                <th>Estudiante</th>
+                <th>Tipo</th>
+                <th>Registro</th>
+                <th>Fecha</th>
+                <th>Mejoría</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+
+        <!-- ================= ACTIVIDADES Y NOTAS ================= -->
+        <section id="actividades" class="vista">
+          <p class="etiqueta">C.E Marcelina Viuda de Granillo</p>
+          <div class="encabezado-vista">
+            <div>
+              <h1>Actividades y notas</h1>
+              <p class="subtitulo">Crea tus actividades, define su porcentaje y registra las notas de 0 a 10.</p>
+            </div>
+            <div class="acciones">
+              <button type="button" class="boton-principal" id="btn-nueva-actividad">+ Nueva actividad</button>
+            </div>
+          </div>
+
+          <p class="sin-resultados" id="notas-aviso" hidden>
+            Todavía no tienes materias asignadas. Pide a la dirección que te asigne una para empezar.
+          </p>
+
+          <div class="filtros">
+            <select id="notas-materia" aria-label="Materia y sección"></select>
+            <select id="notas-periodo" aria-label="Trimestre">
+              <option value="1">Primer trimestre</option>
+              <option value="2">Segundo trimestre</option>
+              <option value="3">Tercer trimestre</option>
+            </select>
+            <p class="conteo-estudiantes" id="notas-porcentaje" role="status"></p>
+          </div>
+
+          <h2 class="subtitulo-seccion">Actividades del trimestre</h2>
+
+          <table class="tabla" id="tabla-actividades">
+            <thead>
+              <tr>
+                <th>Actividad</th>
+                <th>Porcentaje</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+
+          <h2 class="subtitulo-seccion">Notas de los estudiantes</h2>
+
+          <div style="overflow-x:auto;">
+            <table class="tabla" id="tabla-notas">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div class="acciones" style="margin-top:16px; align-items:center;">
+            <button type="button" class="boton-principal" id="btn-guardar-notas">Guardar notas</button>
+            <p class="conteo-estudiantes" id="estado-notas" role="status"></p>
+          </div>
+
+          <p class="conteo-estudiantes" style="margin-top:12px;">
+            La nota del trimestre es el promedio ponderado de las actividades que ya tienen nota, y será definitiva
+            cuando los porcentajes sumen 100% y todas estén calificadas. El promedio final es el promedio simple de
+            los trimestres que ya tienen notas.
+          </p>
+        </section>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- ================= VENTANA: MÉRITO / DEMÉRITO ================= -->
+  <dialog id="modal-registro" class="modal">
+    <form id="form-registro">
+      <h2>Registrar mérito / demérito</h2>
+      <p class="subtitulo">Anota una observación sobre un estudiante.</p>
+
+      <label for="registro-estudiante">Estudiante</label>
+      <select id="registro-estudiante" required></select>
+
+      <p class="modal__etiqueta">Tipo</p>
+      <div class="modal__tipos">
+        <label class="estado"><input type="radio" name="tipo" value="merito" checked><span>Mérito</span></label>
+        <label class="estado"><input type="radio" name="tipo" value="demerito"><span>Demérito</span></label>
+      </div>
+
+      <label for="registro-motivo">Motivo</label>
+      <input type="text" id="registro-motivo" placeholder="Ej. Apoyo a sus compañeros" required>
+
+      <label for="registro-detalle">Descripción</label>
+      <textarea id="registro-detalle" rows="3" placeholder="Detalle de lo observado"></textarea>
+
+      <label for="registro-fecha">Fecha</label>
+      <input type="date" id="registro-fecha" required>
+
+      <div class="modal__acciones">
+        <button type="button" class="boton-secundario" data-cerrar>Cancelar</button>
+        <button type="submit" class="boton-principal">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ================= VENTANA: NUEVO ESTUDIANTE ================= -->
+  <dialog id="modal-estudiante" class="modal">
+    <form id="form-estudiante">
+      <h2>Nuevo estudiante</h2>
+      <p class="subtitulo">Registra a un estudiante en tu sección.</p>
+
+      <div class="modal__fila">
+        <div>
+          <label for="est-nombres">Nombres</label>
+          <input type="text" id="est-nombres" required>
+        </div>
+        <div>
+          <label for="est-apellidos">Apellidos</label>
+          <input type="text" id="est-apellidos" required>
+        </div>
+      </div>
+
+      <div class="modal__fila">
+        <div>
+          <label for="est-codigo">Código</label>
+          <input type="text" id="est-codigo" placeholder="Ej. EST-001" required>
+        </div>
+        <div>
+          <label for="est-nacimiento">Fecha de nacimiento</label>
+          <input type="date" id="est-nacimiento">
+        </div>
+      </div>
+
+      <label for="est-seccion">Sección</label>
+      <select id="est-seccion" required></select>
+
+      <div class="modal__acciones">
+        <button type="button" class="boton-secundario" data-cerrar>Cancelar</button>
+        <button type="submit" class="boton-principal">Guardar estudiante</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ================= VENTANA: ACTIVIDAD ================= -->
+  <dialog id="modal-actividad" class="modal">
+    <form id="form-actividad">
+      <h2 id="titulo-actividad">Nueva actividad</h2>
+      <p class="subtitulo" id="ayuda-actividad"></p>
+
+      <label for="actividad-nombre">Nombre de la actividad</label>
+      <input type="text" id="actividad-nombre" maxlength="100" placeholder="Ej. Examen parcial" required>
+
+      <label for="actividad-porcentaje">Porcentaje (%)</label>
+      <input type="number" id="actividad-porcentaje" min="0.01" max="100" step="0.01" required>
+
+      <div class="modal__acciones">
+        <button type="button" class="boton-secundario" data-cerrar>Cancelar</button>
+        <button type="submit" class="boton-principal" id="btn-guardar-actividad">Guardar actividad</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="docente.js"></script>
+</body>
+
+</html>

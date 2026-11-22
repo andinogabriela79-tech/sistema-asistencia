@@ -1,0 +1,1924 @@
+:root {
+  --verde-oscuro: #14473a;
+  --verde: #1b6b52;
+  --verde-hover: #155741;
+  --verde-claro: #e3f1ea;
+  --fondo-tarjeta: #f4f9f6;
+  --texto: #14211c;
+  --texto-suave: #6b7a74;
+  --borde: #dde3e0;
+  --error: #b3261e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: var(--texto);
+  background: #fff;
+}
+
+/* ---------- Estructura de dos paneles ---------- */
+.login {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  min-height: 100vh;
+}
+
+/* ---------- Panel izquierdo ---------- */
+.login__panel {
+  background: var(--verde-oscuro);
+  color: #fff;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.marca__logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--verde-claro);
+  color: var(--verde-oscuro);
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.marca__nombre {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.etiqueta {
+  margin: 0 0 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--verde);
+}
+
+.login__panel .etiqueta {
+  color: #9fd8bd;
+}
+
+.login__mensaje h2 {
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  line-height: 1.1;
+}
+
+.login__mensaje p:last-child {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+.datos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 32px;
+}
+
+.datos strong {
+  display: block;
+  font-size: 1.5rem;
+}
+
+.datos span {
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+/* ---------- Panel del formulario ---------- */
+.login__formulario {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px clamp(24px, 6vw, 80px);
+}
+
+.login__formulario h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+}
+
+.subtitulo {
+  margin: 0 0 24px;
+  color: var(--texto-suave);
+}
+
+#form-login {
+  width: 100%;
+  max-width: 440px;
+}
+
+/* ---------- Tarjetas de perfil ---------- */
+.perfiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.perfil {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.perfil input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.perfil:has(input:checked) {
+  border-color: var(--verde);
+  background: var(--fondo-tarjeta);
+}
+
+.perfil:has(input:focus-visible) {
+  outline: 2px solid var(--verde);
+  outline-offset: 2px;
+}
+
+.perfil__icono {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background: var(--verde-claro);
+  color: var(--verde);
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.perfil__titulo {
+  font-weight: 700;
+}
+
+.perfil__detalle {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+/* ---------- Campos y botón ---------- */
+#form-login label[for] {
+  display: block;
+  margin: 16px 0 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+#form-login input[type="text"],
+#form-login input[type="email"],
+#form-login input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+#form-login input:focus {
+  outline: 2px solid var(--verde);
+  border-color: transparent;
+}
+
+button[type="submit"] {
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: var(--verde);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background: var(--verde-hover);
+}
+
+#mensaje {
+  min-height: 1.2em;
+  margin: 12px 0 0;
+  text-align: center;
+  color: var(--error);
+}
+
+.nota {
+  margin: 16px 0 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+}
+
+/* ---------- Celulares y pantallas pequeñas ---------- */
+@media (max-width: 800px) {
+  .login {
+    grid-template-columns: 1fr;
+  }
+
+  .login__panel {
+    padding: 24px;
+  }
+
+  .datos {
+    display: none;
+  }
+
+  .login__mensaje h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* =========================================================
+   PANEL (director.html y docente.html)
+   ========================================================= */
+
+.pagina-panel {
+  background: #f6f8f7;
+}
+
+.panel {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+/* ---------- Menú lateral ---------- */
+.lateral {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 16px;
+  background: #fff;
+  border-right: 1px solid var(--borde);
+}
+
+.lateral .marca {
+  padding: 0 8px 24px;
+}
+
+.lateral .marca__logo {
+  background: var(--verde-claro);
+  color: var(--verde-oscuro);
+}
+
+.lateral .etiqueta {
+  margin: 0 0 8px 8px;
+}
+
+.lateral__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lateral__menu a {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: var(--texto-suave);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.lateral__menu a:hover {
+  background: var(--fondo-tarjeta);
+  color: var(--texto);
+}
+
+/* Enlace activo: resalta el que corresponde a la sección visible */
+.panel:has(#resumen:target) a[href="#resumen"],
+.panel:has(#asistencias:target) a[href="#asistencias"],
+.panel:has(#retenciones:target) a[href="#retenciones"],
+.panel:has(#docentes:target) a[href="#docentes"],
+.panel:has(#secciones:target) a[href="#secciones"],
+.panel:not(:has(.vista:target)) a[href="#resumen"] {
+  background: var(--verde-claro);
+  color: var(--verde-oscuro);
+  font-weight: 700;
+}
+
+/* Usuario al pie del menú */
+.lateral__usuario {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 8px 0;
+  border-top: 1px solid var(--borde);
+}
+
+.lateral__usuario div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.lateral__usuario strong {
+  font-size: 0.9rem;
+}
+
+.lateral__usuario span:not(.avatar) {
+  font-size: 0.8rem;
+}
+
+/*
+   DOCENTE: asistencia diaria */
+
+/* Enlace activo del menú del docente */
+.panel:has(#asistencia:target) a[href="#asistencia"],
+.panel:has(#estudiantes:target) a[href="#estudiantes"],
+.panel:has(#comites:target) a[href="#comites"],
+.panel:has(#actividades:target) a[href="#actividades"],
+.panel:has(#documentacion:target) a[href="#documentacion"],
+.panel:not(:has(.vista:target)) a[href="#asistencia"] {
+  background: var(--verde-claro);
+  color: var(--verde-oscuro);
+  font-weight: 700;
+}
+
+/* Bloque de la institución en el menú lateral */
+.lateral__institucion {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 16px 8px;
+}
+
+.lateral__institucion strong {
+  font-size: 1rem;
+}
+
+.lateral__institucion span {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+/* Encabezado de la vista con botón a la derecha */
+.encabezado-vista {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.boton-secundario {
+  padding: 10px 16px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: #fff;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton-secundario:hover {
+  background: var(--fondo-tarjeta);
+}
+
+/*            Filtros               */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0 16px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+}
+
+.filtros select,
+.filtros input[type="date"] {
+  padding: 12px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.chip {
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: var(--fondo-tarjeta);
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+.conteo {
+  display: flex;
+  gap: 16px;
+  margin: 0 0 0 auto;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.conteo span::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 6px;
+  border-radius: 50%;
+}
+
+.conteo span:nth-child(1)::before {
+  background: #2f8f68;
+}
+
+.conteo span:nth-child(2)::before {
+  background: #d9534f;
+}
+
+.conteo span:nth-child(3)::before {
+  background: #d9a43a;
+}
+
+/*             Días de la semana             */
+.semana {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.dia {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  background: #fff;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dia span {
+  font-size: 0.8rem;
+  color: var(--verde);
+}
+
+.dia strong {
+  font-size: 1.4rem;
+}
+
+.dia small {
+  color: var(--texto-suave);
+  font-size: 0.8rem;
+}
+
+.dia:hover {
+  border-color: var(--verde);
+}
+
+.dia--activo {
+  border-color: var(--verde);
+  background: var(--verde-claro);
+}
+
+/*     Tabla de asistencia     */
+.tabla-asistencia {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.tabla-asistencia th {
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  background: var(--fondo-tarjeta);
+}
+
+.tabla-asistencia td {
+  padding: 14px 20px;
+  border-top: 1px solid var(--borde);
+  vertical-align: middle;
+}
+
+.tabla-asistencia td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tabla-asistencia td>div {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabla-asistencia small {
+  color: var(--texto-suave);
+  font-size: 0.8rem;
+}
+
+.avatar--chico {
+  width: 36px;
+  height: 36px;
+  font-size: 0.8rem;
+}
+
+/*      Botones de estado (Presente, Ausente...)       */
+.estado {
+  display: inline-block;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.estado input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.estado span {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.85rem;
+}
+
+.estado:hover span {
+  background: var(--fondo-tarjeta);
+}
+
+.estado:has(input:focus-visible) span {
+  outline: 2px solid var(--verde);
+  outline-offset: 2px;
+}
+
+.estado:has(input[value="presente"]:checked) span {
+  background: #e3f1ea;
+  border-color: #2f8f68;
+  color: #14473a;
+}
+
+.estado:has(input[value="ausente"]:checked) span {
+  background: #fbe9e8;
+  border-color: #d9534f;
+  color: #8a2a27;
+}
+
+.estado:has(input[value="tarde"]:checked) span {
+  background: #fbf1dc;
+  border-color: #d9a43a;
+  color: #7a5a14;
+}
+
+.estado:has(input[value="justificada"]:checked) span {
+  background: #e6edfa;
+  border-color: #5b7fd1;
+  color: #2a4585;
+}
+
+/*   Pantallas pequeñas   */
+@media (max-width: 800px) {
+  .semana {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .conteo {
+    margin-left: 0;
+  }
+
+  .tabla-asistencia td:first-child {
+    flex-wrap: wrap;
+  }
+}
+
+.lateral__usuario button {
+  border: 1px solid var(--borde);
+  background: #fff;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.lateral__usuario button:hover {
+  background: var(--fondo-tarjeta);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--verde-claro);
+  color: var(--verde-oscuro);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.barra {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 32px;
+  background: #fff;
+  border-bottom: 1px solid var(--borde);
+}
+
+.barra__ruta {
+  margin: 0;
+  margin-right: auto;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+.barra__ruta strong {
+  color: var(--texto);
+}
+
+#fecha-actual {
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+.panel__contenido {
+  padding: 32px;
+}
+
+.panel__contenido h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+}
+
+.vista {
+  display: none;
+}
+
+.vista:target {
+  display: block;
+}
+
+@media (max-width: 800px) {
+  .panel {
+    grid-template-columns: 1fr;
+  }
+
+  .lateral {
+    position: static;
+    height: auto;
+  }
+
+  .lateral__menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .barra,
+  .panel__contenido {
+    padding: 16px;
+  }
+}
+
+/*
+   DOCENTE: Estudiantes (méritos, deméritos y seguimiento)
+*/
+
+/* Botones del encabezado */
+.acciones {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.boton-principal {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--verde);
+  color: #fff;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton-principal:hover {
+  background: var(--verde-hover);
+}
+
+.boton-texto {
+  border: none;
+  background: none;
+  color: var(--texto-suave);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton-texto:hover {
+  color: var(--verde);
+  text-decoration: underline;
+}
+
+/* Texto junto a los filtros */
+.conteo-estudiantes {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.filtro-derecha {
+  margin-left: auto;
+}
+
+/* Título de la segunda tabla */
+.subtitulo-seccion {
+  margin: 32px 0 12px;
+  font-size: 1.1rem;
+}
+
+/*  Tablas generales  */
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.tabla th {
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  background: var(--fondo-tarjeta);
+}
+
+.tabla td {
+  padding: 14px 20px;
+  border-top: 1px solid var(--borde);
+  vertical-align: middle;
+  font-size: 0.9rem;
+}
+
+.tabla td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tabla td>div {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabla small {
+  color: var(--texto-suave);
+  font-size: 0.8rem;
+}
+
+.tabla select {
+  padding: 8px 12px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+/*  Insignias (mérito / demérito) */
+.insignia {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.insignia--merito {
+  background: var(--verde-claro);
+  color: var(--verde-oscuro);
+}
+
+.insignia--demerito {
+  background: #fbf1dc;
+  color: #7a5a14;
+}
+
+/*  Pantallas pequeñas */
+@media (max-width: 800px) {
+  .acciones {
+    width: 100%;
+  }
+
+  .filtro-derecha {
+    margin-left: 0;
+  }
+
+  .tabla {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+/* =========================================================
+   Ventana emergente (modal)
+   ========================================================= */
+
+.modal {
+  width: min(520px, 92vw);
+  padding: 0;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(20, 33, 28, 0.25);
+  color: var(--texto);
+}
+
+.modal::backdrop {
+  background: rgba(20, 33, 28, 0.5);
+}
+
+.modal form {
+  padding: 28px;
+}
+
+.modal h2 {
+  margin: 0 0 4px;
+  font-size: 1.3rem;
+}
+
+.modal .subtitulo {
+  margin: 0 0 8px;
+}
+
+.modal label:not(.estado),
+.modal__etiqueta {
+  display: block;
+  margin: 16px 0 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.modal select,
+.modal input[type="text"],
+.modal input[type="date"],
+.modal textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.modal textarea {
+  resize: vertical;
+}
+
+.modal select:focus,
+.modal input:focus,
+.modal textarea:focus {
+  outline: 2px solid var(--verde);
+  border-color: transparent;
+}
+
+.modal__tipos {
+  display: flex;
+  gap: 8px;
+}
+
+.modal__tipos .estado {
+  margin-right: 0;
+}
+
+.modal__tipos .estado:has(input[value="merito"]:checked) span {
+  background: var(--verde-claro);
+  border-color: var(--verde);
+  color: var(--verde-oscuro);
+}
+
+.modal__tipos .estado:has(input[value="demerito"]:checked) span {
+  background: #fbf1dc;
+  border-color: #d9a43a;
+  color: #7a5a14;
+}
+
+.modal__acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.modal__fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 800px) {
+  .modal__fila {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   DOCENTE: Actividades y notas
+   ========================================================= */
+
+/* Tres tarjetas en una fila */
+.tarjetas--tres {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ---------- Contenedor de la tabla ---------- */
+.panel-notas {
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.panel-notas__cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 20px 24px;
+}
+
+.panel-notas__cabecera h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.panel-notas__cabecera p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+}
+
+/* Si hay muchas actividades, la tabla se desplaza a los lados */
+.tabla-scroll {
+  overflow-x: auto;
+}
+
+.tabla-notas {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+}
+
+.tabla-notas th {
+  padding: 16px 12px;
+  background: var(--fondo-tarjeta);
+  border-top: 1px solid var(--borde);
+  border-bottom: 1px solid var(--borde);
+  text-align: center;
+  font-size: 0.85rem;
+  vertical-align: top;
+}
+
+.tabla-notas th:first-child {
+  text-align: left;
+  padding-left: 24px;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+}
+
+.tabla-notas td {
+  padding: 14px 12px;
+  border-top: 1px solid var(--borde);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tabla-notas td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 24px;
+  text-align: left;
+}
+
+/* ---------- Encabezado de cada actividad ---------- */
+.actividad__nombre {
+  display: block;
+  font-weight: 700;
+}
+
+.tabla-notas th small {
+  display: block;
+  margin-top: 2px;
+  font-weight: 400;
+  color: var(--texto-suave);
+}
+
+.actividad__botones {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.boton-mini {
+  padding: 3px 10px;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--texto-suave);
+  font-family: inherit;
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+.boton-mini:hover {
+  border-color: var(--verde);
+  color: var(--verde);
+}
+
+/* ---------- Campos de nota ---------- */
+.nota {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nota input {
+  width: 78px;
+  padding: 10px 8px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.nota input::placeholder {
+  color: #b9c2be;
+  font-weight: 400;
+}
+
+.nota input:focus {
+  outline: 2px solid var(--verde);
+  border-color: transparent;
+}
+
+.nota span {
+  font-size: 0.75rem;
+  color: var(--texto-suave);
+}
+
+/* Una nota fuera del máximo se marca en rojo */
+.nota input:invalid {
+  border-color: var(--error);
+  color: var(--error);
+}
+
+/* Quita las flechitas de los campos numéricos */
+.nota input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.nota input::-webkit-outer-spin-button,
+.nota input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ---------- Columna del promedio ---------- */
+.tabla-notas .col-promedio {
+  background: #eef6f1;
+}
+
+.tabla-notas td.col-promedio {
+  text-align: center;
+}
+
+.tabla-notas th.col-promedio {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--verde);
+  vertical-align: middle;
+}
+
+.promedio {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--verde-oscuro);
+}
+
+.promedio--pendiente {
+  font-weight: 500;
+  color: #a7b3ae;
+}
+
+.promedio-detalle {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.75rem;
+  color: var(--texto-suave);
+}
+
+/* ---------- Pantallas pequeñas ---------- */
+@media (max-width: 800px) {
+  .tarjetas--tres {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   DOCENTE: Documentación (papel editable)
+   ========================================================= */
+
+/* ---------- Selector de documento ---------- */
+.selector-doc {
+  display: inline-flex;
+  gap: 4px;
+  margin: 20px 0 16px;
+  padding: 4px;
+  background: #e8ece9;
+  border-radius: 10px;
+}
+
+.selector-doc label {
+  position: relative;
+  cursor: pointer;
+}
+
+.selector-doc input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.selector-doc span {
+  display: block;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+}
+
+.selector-doc label:has(input:checked) span {
+  background: #fff;
+  color: var(--texto);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.selector-doc label:has(input:focus-visible) span {
+  outline: 2px solid var(--verde);
+}
+
+/* Solo se ve el documento elegido (sin JavaScript) */
+.doc:has(#doc-semanal:checked) .hoja--evaluacion {
+  display: none;
+}
+
+.doc:has(#doc-evaluacion:checked) .hoja--semanal {
+  display: none;
+}
+
+/* ---------- Estructura: papel + recuadro lateral ---------- */
+.doc__cuerpo {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 24px;
+  align-items: start;
+}
+
+.doc__lienzo {
+  padding: 32px;
+  background: #e8ece9;
+  border-radius: 14px;
+  overflow-x: auto;
+}
+
+/* ---------- La hoja ---------- */
+.hoja {
+  max-width: 794px;
+  margin: 0 auto;
+  padding: 48px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(20, 33, 28, 0.12);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  color: #111;
+}
+
+.hoja--evaluacion {
+  max-width: 1050px;
+  padding: 32px;
+}
+
+.hoja:focus {
+  outline: none;
+}
+
+.hoja h2 {
+  margin: 0 0 6px;
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+.hoja h3 {
+  margin: 24px 0 8px;
+  font-size: 0.95rem;
+}
+
+.hoja p {
+  margin: 6px 0;
+  line-height: 1.5;
+}
+
+.hoja__subtitulo {
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hoja__datos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 24px;
+  margin-bottom: 16px;
+}
+
+/* ---------- Tablas del papel ---------- */
+.hoja__tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.hoja__tabla th,
+.hoja__tabla td {
+  padding: 8px 10px;
+  border: 1px solid #c9d3ce;
+  text-align: left;
+}
+
+.hoja__tabla th {
+  background: #eef6f1;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* El cuadro de evaluación es más ancho y va centrado */
+.hoja__tabla--notas {
+  font-size: 0.8rem;
+}
+
+.hoja__tabla--notas th,
+.hoja__tabla--notas td {
+  padding: 6px 8px;
+  text-align: center;
+}
+
+.hoja__tabla--notas td:nth-child(2) {
+  text-align: left;
+  white-space: nowrap;
+}
+
+.hoja__tabla .calc {
+  background: #f3f7f5;
+  font-weight: 700;
+}
+
+.hoja__tabla .calc--final {
+  background: #e3f1ea;
+}
+
+/* ---------- Recuadro lateral ---------- */
+.doc__lateral {
+  position: sticky;
+  top: 24px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+}
+
+.doc__icono {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+
+.doc__lateral h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.doc__lateral p {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--texto-suave);
+}
+
+.doc__periodo {
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--borde);
+  font-size: 0.8rem;
+}
+
+/* ---------- Pantallas pequeñas ---------- */
+@media (max-width: 1000px) {
+  .doc__cuerpo {
+    grid-template-columns: 1fr;
+  }
+
+  .doc__lateral {
+    position: static;
+  }
+
+  .hoja {
+    padding: 24px;
+  }
+
+  .hoja__datos {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Al imprimir: solo el documento ---------- */
+.hoja--evaluacion {
+  page: evaluacion;
+}
+
+@page evaluacion {
+  size: landscape;
+}
+
+@media print {
+
+  .lateral,
+  .barra,
+  .doc .etiqueta,
+  .doc .encabezado-vista,
+  .selector-doc,
+  .doc__lateral {
+    display: none !important;
+  }
+
+  body,
+  .pagina-panel {
+    background: #fff;
+  }
+
+  .panel {
+    display: block;
+  }
+
+  .panel__contenido {
+    padding: 0;
+  }
+
+  .doc__cuerpo {
+    display: block;
+  }
+
+  .doc__lienzo {
+    padding: 0;
+    background: none;
+  }
+
+  .hoja {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+.hoja--evaluacion {
+  page: evaluacion;
+}
+
+@page evaluacion {
+  size: landscape;
+}
+
+/* Director: sección por defecto y enlace activo */
+.panel__contenido:not(:has(.vista:target)) #asistencias {
+  display: block;
+}
+
+.panel:has(#asistencias:target) a[href="#asistencias"],
+.panel:has(#documentacion:target) a[href="#documentacion"],
+.panel:has(#docentes-secciones:target) a[href="#docentes-secciones"],
+.panel:not(:has(.vista:target)) a[href="#asistencias"] {
+  background: var(--verde-claro);
+  color: var(--verde-oscuro);
+  font-weight: 700;
+}
+
+/* =========================================================
+   DIRECTOR: Asistencia semanal (tabla dentro de la tarjeta)
+   ========================================================= */
+
+#asistencias .grafico {
+  overflow-x: auto;
+}
+
+.tabla-plana {
+  width: 100%;
+  min-width: 640px;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.tabla-plana th {
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  border-bottom: 1px solid var(--borde);
+}
+
+.tabla-plana td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--borde);
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.tabla-plana tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tabla-plana tbody tr:hover {
+  background: var(--fondo-tarjeta);
+}
+
+/* =========================================================
+   DIRECTOR: Docentes y Secciones
+   ========================================================= */
+
+/* El selector muestra un solo bloque a la vez (sin JavaScript) */
+.ds:has(#ver-docentes:checked) .bloque-secciones {
+  display: none;
+}
+
+.ds:has(#ver-secciones:checked) .bloque-docentes {
+  display: none;
+}
+
+.ds .encabezado-vista {
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.ds .subtitulo-seccion {
+  margin: 0;
+}
+
+/* Buscador */
+.filtros input[type="search"] {
+  min-width: 280px;
+  padding: 12px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.filtros input[type="search"]:focus {
+  outline: 2px solid var(--verde);
+  border-color: transparent;
+}
+
+/* Estado del docente */
+.insignia--activo {
+  background: var(--verde-claro);
+  color: var(--verde-oscuro);
+}
+
+.insignia--inactivo {
+  background: #eceeed;
+  color: #5c6a64;
+}
+
+/* Docente inactivo: la fila se ve atenuada */
+#tabla-docentes tr[data-estado="inactivo"] td:not(:last-child) {
+  opacity: 0.65;
+}
+
+@media (max-width: 800px) {
+  .filtros input[type="search"] {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* Director: asignaciones del docente */
+.modal {
+  max-height: 90vh;
+}
+
+.modal__ayuda {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+}
+
+.asignacion-fila {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr auto;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.asignaciones {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+}
+
+.sin-asignaciones {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+@media (max-width: 800px) {
+  .asignacion-fila {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Íconos del menú lateral */
+.lateral__menu a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lateral__menu svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Menú desplegable en celular */
+.boton-menu {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .boton-menu {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .lateral {
+    gap: 12px;
+  }
+
+  .lateral .marca {
+    padding-bottom: 0;
+  }
+
+  /* Cerrado: solo se ven la marca y el botón */
+  .lateral:not(.lateral--abierto)> :not(.marca):not(.boton-menu) {
+    display: none;
+  }
+
+  /* Abierto: las opciones van en columna */
+  .lateral__menu {
+    flex-direction: column;
+  }
+}
+
+/* =========================================================
+   DIRECTOR: Documentación
+   ========================================================= */
+
+/* Pastillas de tipo de documento */
+.insignia--semanal {
+  background: var(--verde-claro);
+  color: var(--verde-oscuro);
+}
+
+.insignia--evaluacion {
+  background: #e6edfa;
+  color: #2a4585;
+}
+
+.insignia--meritos {
+  background: #efe8f7;
+  color: #4b2f73;
+}
+
+#tabla-documentos .insignia {
+  flex-shrink: 0;
+}
+
+/* Acciones: Ver y Descargar en una sola línea */
+#tabla-documentos td:last-child {
+  white-space: nowrap;
+}
+
+#tabla-documentos td:last-child .boton-texto {
+  margin-right: 8px;
+}
+
+/* Mensaje cuando los filtros no encuentran nada */
+.sin-resultados {
+  margin: 16px 0 0;
+  padding: 24px;
+  text-align: center;
+  color: var(--texto-suave);
+  background: #fff;
+  border: 1px dashed var(--borde);
+  border-radius: 14px;
+}
+
+.sin-resultados[hidden] {
+  display: none;
+}
+
+
+/* =========================================================
+   AJUSTES: ventanas y tarjetas
+   ========================================================= */
+
+/* Campos de correo, teléfono y número dentro de las ventanas */
+.modal input[type="email"],
+.modal input[type="tel"],
+.modal input[type="number"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* Botón Guardar de las ventanas: la regla del login lo estiraba */
+.modal button[type="submit"] {
+  width: auto;
+  margin-top: 0;
+  padding: 10px 16px;
+  font-size: 1rem;
+}
+
+/* Tarjetas de resumen (Notas del docente) */
+.tarjetas {
+  display: grid;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.tarjeta {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+}
+
+.tarjeta p {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.tarjeta strong {
+  font-size: 1.8rem;
+}
+
+/* Recuadro de Asistencia semanal del director */
+.grafico {
+  margin-top: 24px;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+}
+
+.grafico h2 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+}
+
+.grafico p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+/* ===== Formulario de cambio de contraseña (login.html) ===== */
+#form-cambio {
+  max-width: 440px;            /* mismo ancho que el formulario de login */
+}
+
+#form-cambio p {
+  margin: 0 0 12px;            /* espacio bajo el texto de aviso */
+}
+
+#form-cambio label {
+  display: block;              /* cada etiqueta en su propia línea */
+  margin-top: 14px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+#form-cambio input {
+  display: block;              /* cada campo debajo de su etiqueta */
+  width: 100%;                 /* ocupa todo el ancho del formulario */
+  box-sizing: border-box;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 1px solid #cfd8d3;
+  border-radius: 8px;
+}
+
+#form-cambio button {
+  margin-top: 20px;            /* separa el botón del último campo */
+}
+
+/* Botón Eliminar en rojo (panel del director) */
+[data-accion="eliminar"] {
+  color: #b42318;
+}
+/* =========================================================
+   CONEXIÓN CON EL BACKEND: piezas nuevas con la misma paleta
+   ========================================================= */
+.oculto { display: none !important; }
+
+.msg { margin: 0 0 16px; padding: 12px 16px; border-radius: 10px; font-size: 0.9rem; }
+.msg.error { background: #fbe9e8; color: var(--error); }
+.msg.ok { background: var(--verde-claro); color: var(--verde-oscuro); }
+.ayuda { margin: 8px 0 0; font-size: 0.8rem; color: var(--texto-suave); }
+.num { text-align: center; }
+
+/* Vista por defecto (la primera) cuando la dirección no trae #sección */
+.panel__contenido:not(:has(.vista:target)) .vista.defecto { display: block; }
+.panel:has(#asistencia:target) a[href="#asistencia"],
+.panel:has(#meritos:target) a[href="#meritos"],
+.panel:has(#estudiantes:target) a[href="#estudiantes"],
+.panel:has(#notas:target) a[href="#notas"],
+.panel:has(#documentacion:target) a[href="#documentacion"],
+.panel:has(#docentes-secciones:target) a[href="#docentes-secciones"],
+.panel:not(:has(.vista:target)) .lateral__menu a:first-child {
+  background: var(--verde-claro); color: var(--verde-oscuro); font-weight: 700;
+}
+.panel__contenido > .subtitulo { margin-bottom: 0; }
+.panel > div { min-width: 0; }
+
+/* Botones */
+.boton-principal, .boton-secundario { text-decoration: none; display: inline-block; font-size: 0.95rem; }
+.boton-peligro { padding: 10px 16px; border: 1px solid #e8b4b0; border-radius: 8px; background: #fff; color: var(--error); font-family: inherit; font-weight: 600; cursor: pointer; }
+.boton-principal:disabled { opacity: .6; cursor: wait; }
+.boton-texto[disabled] { opacity: .5; }
+
+/* Bloques y filtros */
+.bloque { margin: 16px 0; padding: 20px; background: #fff; border: 1px solid var(--borde); border-radius: 14px; }
+.bloque h2, .grafico h2 { margin: 0 0 12px; font-size: 1.1rem; }
+.cabeza { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.cabeza h2 { margin: 0; }
+.filtros > div { display: flex; flex-direction: column; gap: 6px; min-width: 150px; }
+.filtros label { font-size: 0.8rem; font-weight: 600; }
+.filtros { align-items: flex-end; }
+.tabla-wrap { overflow-x: auto; }
+.vacio { padding: 24px !important; text-align: center; color: var(--texto-suave); }
+
+/* Tablas con la misma línea gráfica */
+.bloque table, .grafico table.tabla-plana { width: 100%; border-collapse: collapse; }
+.bloque th { padding: 12px; text-align: left; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texto-suave); background: var(--fondo-tarjeta); border-bottom: 1px solid var(--borde); white-space: nowrap; }
+.bloque td { padding: 12px; border-bottom: 1px solid var(--borde); font-size: 0.9rem; vertical-align: middle; }
+.bloque input:not([type=radio]):not([type=checkbox]), .bloque select, .bloque textarea,
+.filtros input[type="date"], .tabla-asistencia input.obs {
+  padding: 10px 12px; border: 1px solid var(--borde); border-radius: 8px; background: #fff; font-family: inherit; font-size: 0.95rem; width: 100%;
+}
+.filtros input[type="date"], .filtros select { width: auto; }
+.tabla-asistencia input.obs { min-width: 160px; }
+.bloque input:focus, .bloque select:focus, .tabla-asistencia input:focus { outline: 2px solid var(--verde); border-color: transparent; }
+
+/* Pastillas */
+.pill { display: inline-block; margin: 2px 4px 2px 0; padding: 4px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 600; background: var(--verde-claro); color: var(--verde-oscuro); }
+.pill--rojo { background: #fbe9e8; color: #8a2a27; }
+.pill--ambar { background: #fbf1dc; color: #7a5a14; }
+.pill--gris { background: #eceeed; color: #5c6a64; }
+.pill--azul { background: #e6edfa; color: #2a4585; }
+.tabla-plana td .pill { margin: 0; }
+
+/* Ventanas (usan la clase .modal de siempre) */
+.modal > div { padding: 28px; }
+.modal__acciones .boton-peligro { margin-right: auto; }
+.modal input[type="checkbox"] { width: auto; margin-right: 8px; }
+.modal .subtitulo { margin-bottom: 8px; }
+.lista-asig { border: 1px solid var(--borde); border-radius: 8px; padding: 8px 12px; max-height: 190px; overflow: auto; }
+.lista-asig .linea { display: flex; gap: 8px; align-items: center; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--borde); font-size: 0.9rem; }
+.lista-asig .linea:last-child { border-bottom: 0; }
+.agregar-asig { display: grid; grid-template-columns: 1fr 1.4fr auto; gap: 8px; margin-top: 8px; align-items: center; }
+@media (max-width: 800px) { .agregar-asig { grid-template-columns: 1fr; } }
+
+/* Hoja de texto editable (documento semanal) dentro del papel de siempre */
+.hoja-texto { max-width: 900px; min-height: 360px; white-space: pre-wrap; font-family: ui-monospace, Consolas, monospace; font-size: 0.85rem; tab-size: 10; overflow-x: auto; }
+.hoja-texto:focus { outline: 2px solid var(--verde); }
+.doc-campos { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; align-items: end; margin-bottom: 16px; }
+.doc-campos label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 6px; }
+.doc-barra { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+.titulo-doc { width: 100%; margin: 0 auto 12px; max-width: 900px; display: block; padding: 10px 12px; border: 1px solid var(--borde); border-radius: 8px; font: inherit; }
+
+/* Pantalla de acceso: mensajes y página de cambio de clave */
+.login__formulario .msg { margin-top: 12px; }
+#form-cambio .ayuda { margin: 6px 0 0; }
+.menu-lateral-ancho { width: 100%; }
+@media print { .no-imprimir { display: none !important; } }
+
+@media (max-width: 800px) {
+  .tabla-asistencia, .tabla-plana { display: block; overflow-x: auto; }
+  .grafico { padding: 16px; }
+  .filtros > div { min-width: 120px; flex: 1 1 140px; }
+}
+
+/* Nombre y código en dos líneas dentro de la tabla de notas */
+.tabla-notas td > div:not(.nota) { display: flex; flex-direction: column; }
+.tabla-notas td small { color: var(--texto-suave); font-size: 0.8rem; }

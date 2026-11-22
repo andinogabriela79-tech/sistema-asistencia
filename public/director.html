@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel del Director</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:,">
+</head>
+
+<body class="pagina-panel">
+  <div class="panel">
+
+    <aside class="lateral">
+      <div class="marca">
+        <button type="button" class="boton-menu" id="btn-menu" aria-expanded="false" aria-controls="menu-principal">☰
+          Menú</button>
+        <span class="marca__logo">A</span>
+        <span class="marca__nombre">Asistente Virtual</span>
+      </div>
+
+      <p class="etiqueta">Menú principal</p>
+      <nav class="lateral__menu" id="menu-principal" aria-label="Navegación principal">
+        <a href="#asistencias">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" />
+            <path d="m8.5 12.5 2.5 2.5 4.5-5" />
+          </svg>
+          <span>Asistencia</span>
+        </a>
+        <a href="#meritos">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" />
+          </svg>
+          <span>Méritos y deméritos</span>
+        </a>
+        <a href="#notas">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="5" y="4" width="14" height="17" rx="2" />
+            <path d="M9 4h6v3H9z" />
+            <path d="M9 12h6M9 16h4" />
+          </svg>
+          <span>Notas</span>
+        </a>
+        <a href="#docentes-secciones">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="9" cy="8" r="3.5" />
+            <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+            <circle cx="17" cy="9" r="2.5" />
+            <path d="M17 14c2.5 0 4.5 2 4.5 5" />
+          </svg>
+          <span>Docentes y Secciones</span>
+        </a>
+      </nav>
+
+      <div class="lateral__usuario">
+        <span class="avatar">DR</span>
+        <div>
+          <strong id="usuario-nombre">Dirección</strong>
+          <span>Administración</span>
+        </div>
+        <button type="button" id="btn-salir" aria-label="Cerrar sesión">Salir</button>
+      </div>
+    </aside>
+
+    <div class="panel__principal">
+      <header class="barra">
+        <p class="barra__ruta">Asistente Virtual / <strong id="ruta-actual">Asistencia</strong></p>
+        <p id="fecha-actual">Fecha</p>
+        <span class="avatar">DR</span>
+      </header>
+
+      <main class="panel__contenido">
+
+        <!-- ================= ASISTENCIA SEMANAL ================= -->
+        <section id="asistencias" class="vista">
+          <p class="etiqueta">Registro compartido · últimos 7 días</p>
+          <h1>Asistencia semanal</h1>
+          <p class="subtitulo">Los registros guardados por docentes se reflejan aquí automáticamente.</p>
+
+          <article class="grafico">
+            <h2>Documentación diaria por sección</h2>
+            <p id="conteo-jornadas">0 jornadas registradas en los últimos 7 días</p>
+
+            <table class="tabla-plana" id="tabla-jornadas">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Sección</th>
+                  <th>Docente</th>
+                  <th>Presentes</th>
+                  <th>Ausencias</th>
+                  <th>Tardes</th>
+                  <th>Justificadas</th>
+                  <th>Total</th>
+                  <th>Documento</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="9" class="sin-asignaciones">Aún no hay jornadas registradas en los últimos 7 días.</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+        </section>
+
+        <!-- ================= MÉRITOS Y DEMÉRITOS ================= -->
+        <section id="meritos" class="vista">
+          <p class="etiqueta">Registro compartido · docentes</p>
+          <h1>Méritos y deméritos</h1>
+          <p class="subtitulo">Lo que los docentes registran en su área se refleja aquí automáticamente.</p>
+
+          <article class="grafico">
+            <h2>Documento de méritos y deméritos</h2>
+
+            <div class="filtros">
+              <select id="meritos-seccion" aria-label="Sección">
+                <option value="">Todas las secciones</option>
+              </select>
+              <select id="meritos-tipo" aria-label="Tipo">
+                <option value="">Méritos y deméritos</option>
+                <option value="merito">Solo méritos</option>
+                <option value="demerito">Solo deméritos</option>
+              </select>
+              <label>Desde <input type="date" id="meritos-desde"></label>
+              <label>Hasta <input type="date" id="meritos-hasta"></label>
+              <button type="button" class="boton-secundario" id="meritos-limpiar">Limpiar filtros</button>
+              <button type="button" class="boton-principal" id="meritos-descargar">↓ Descargar documento</button>
+            </div>
+
+            <p id="conteo-meritos">0 registros</p>
+
+            <table class="tabla-plana" id="tabla-meritos">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Estudiante</th>
+                  <th>Sección</th>
+                  <th>Tipo</th>
+                  <th>Motivo</th>
+                  <th>Registrado por</th>
+                  <th>Seguimiento</th>
+                </tr>
+              </thead>
+              <!-- Las filas las llena app.js con los datos de la base de datos -->
+              <tbody></tbody>
+            </table>
+          </article>
+
+          <article class="grafico">
+            <h2>Resumen por estudiante</h2>
+            <p>Total de puntos de méritos y deméritos con los filtros elegidos.</p>
+
+            <table class="tabla-plana" id="tabla-resumen-meritos">
+              <thead>
+                <tr>
+                  <th>Estudiante</th>
+                  <th>Sección</th>
+                  <th>Méritos</th>
+                  <th>Deméritos</th>
+                  <th>Balance</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </article>
+        </section>
+
+        <!-- ================= NOTAS ================= -->
+        <section id="notas" class="vista">
+          <p class="etiqueta">Registro compartido · docentes</p>
+          <h1>Notas</h1>
+          <p class="subtitulo">Las actividades y notas que registran los docentes se reflejan aquí automáticamente.</p>
+
+          <article class="grafico">
+            <h2>Notas por materia</h2>
+
+            <div class="filtros">
+              <select id="notas-seccion" aria-label="Sección">
+                <option value="">Selecciona una sección</option>
+              </select>
+              <select id="notas-materia" aria-label="Materia">
+                <option value="">Selecciona una materia</option>
+              </select>
+              <select id="notas-periodo" aria-label="Trimestre">
+                <option value="1">Primer trimestre</option>
+                <option value="2">Segundo trimestre</option>
+                <option value="3">Tercer trimestre</option>
+              </select>
+              <button type="button" class="boton-principal" id="notas-descargar">↓ Descargar documento</button>
+            </div>
+
+            <p id="notas-info">Selecciona una sección y una materia para ver las notas.</p>
+
+            <div style="overflow-x:auto;">
+              <table class="tabla-plana" id="tabla-notas">
+                <thead></thead>
+                <!-- Las filas las llena app.js con los datos de la base de datos -->
+                <tbody></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <!-- ================= DOCENTES Y SECCIONES ================= -->
+        <section id="docentes-secciones" class="vista">
+          <div class="ds">
+            <p class="etiqueta">C.E Marcelina Viuda de Granillo</p>
+            <h1>Docentes y Secciones</h1>
+            <p class="subtitulo">Consulta y administra al personal docente y los grupos de la institución.</p>
+
+            <!-- Selector: Docentes / Secciones -->
+            <div class="selector-doc" role="radiogroup" aria-label="Ver">
+              <label>
+                <input type="radio" name="ver-ds" id="ver-docentes" value="docentes" checked>
+                <span>Docentes</span>
+              </label>
+              <label>
+                <input type="radio" name="ver-ds" id="ver-secciones" value="secciones">
+                <span>Secciones</span>
+              </label>
+            </div>
+
+            <!-- ========== DOCENTES ========== -->
+            <div class="bloque-docentes">
+              <div class="encabezado-vista">
+                <h2 class="subtitulo-seccion">Personal docente</h2>
+                <button type="button" class="boton-principal" id="btn-nuevo-docente">+ Nuevo docente</button>
+              </div>
+
+              <div class="filtros">
+                <input type="search" id="buscar-docente" placeholder="Buscar por nombre o correo"
+                  aria-label="Buscar docente">
+                <select id="filtro-estado-docente" aria-label="Estado">
+                  <option value="todos">Todos</option>
+                  <option value="activo">Activos</option>
+                  <option value="inactivo">Inactivos</option>
+                </select>
+                <p class="conteo-estudiantes" id="conteo-docentes">0 docentes</p>
+              </div>
+
+              <table class="tabla" id="tabla-docentes">
+                <thead>
+                  <tr>
+                    <th>Docente</th>
+                    <th>Asignaciones</th>
+                    <th>Especialidad</th>
+                    <th>Teléfono</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <!-- Las filas las llena app.js con los datos de la base de datos -->
+                <tbody></tbody>
+              </table>
+            </div>
+
+            <!-- ========== SECCIONES ========== -->
+            <div class="bloque-secciones">
+              <div class="encabezado-vista">
+                <h2 class="subtitulo-seccion">Secciones del año</h2>
+                <button type="button" class="boton-principal" id="btn-nueva-seccion">+ Nueva sección</button>
+              </div>
+
+              <div class="filtros">
+                <select id="filtro-anio" aria-label="Año">
+                  <option value="todos">Todos los años</option>
+                </select>
+                <p class="conteo-estudiantes" id="conteo-secciones">0 secciones</p>
+              </div>
+
+              <table class="tabla" id="tabla-secciones">
+                <thead>
+                  <tr>
+                    <th>Sección</th>
+                    <th>Grado</th>
+                    <th>Año</th>
+                    <th>Estudiantes</th>
+                    <th>Materias y docentes</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <!-- Las filas las llena app.js con los datos de la base de datos -->
+                <tbody></tbody>
+              </table>
+            </div>
+
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- ================= VENTANA: DOCENTE ================= -->
+  <dialog id="modal-docente" class="modal">
+    <form id="form-docente">
+      <h2 id="titulo-docente">Nuevo docente</h2>
+
+      <label for="doc-nombre">Nombre completo</label>
+      <input type="text" id="doc-nombre" required>
+
+      <label for="doc-correo">Correo institucional</label>
+      <input type="email" id="doc-correo" placeholder="nombre@colegio.edu" required>
+
+      <div class="modal__fila">
+        <div>
+          <label for="doc-especialidad">Especialidad</label>
+          <input type="text" id="doc-especialidad" placeholder="Ej. Matemática y datos">
+        </div>
+        <div>
+          <label for="doc-telefono">Teléfono</label>
+          <input type="tel" id="doc-telefono" placeholder="7000-0000">
+        </div>
+      </div>
+
+      <p class="modal__etiqueta">Asignaciones</p>
+      <p class="modal__ayuda">Indica qué materia da en cada sección. Puedes agregar varias.</p>
+      <div id="lista-asignaciones"></div>
+      <button type="button" class="boton-texto" id="btn-agregar-asignacion">+ Agregar asignación</button>
+
+      <!-- Las opciones de los selects las llena app.js desde la base de datos -->
+      <template id="plantilla-asignacion">
+        <div class="asignacion-fila">
+          <select class="asig-seccion" aria-label="Sección" required>
+            <option value="">Sección</option>
+          </select>
+          <select class="asig-materia" aria-label="Materia" required>
+            <option value="">Materia</option>
+          </select>
+          <button type="button" class="boton-texto" data-quitar-asignacion>Quitar</button>
+        </div>
+      </template>
+
+      <div class="modal__acciones">
+        <button type="button" class="boton-secundario" data-cerrar>Cancelar</button>
+        <button type="submit" class="boton-principal" id="btn-guardar-docente">Guardar docente</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ================= VENTANA: SECCIÓN ================= -->
+  <dialog id="modal-seccion" class="modal">
+    <form id="form-seccion">
+      <h2 id="titulo-seccion">Nueva sección</h2>
+      <p class="subtitulo">Crea un grupo y asigna sus materias y docentes.</p>
+
+      <div class="modal__fila">
+        <div>
+          <label for="sec-nombre">Sección</label>
+          <input type="text" id="sec-nombre" placeholder="Ej. 6° A" required>
+        </div>
+        <div>
+          <label for="sec-grado">Grado</label>
+          <input type="text" id="sec-grado" placeholder="Ej. Sexto grado" required>
+        </div>
+      </div>
+
+      <label for="sec-anio">Año lectivo</label>
+      <input type="number" id="sec-anio" min="2020" max="2100" required>
+
+      <p class="modal__etiqueta">Materias y docentes</p>
+      <p class="modal__ayuda">Cada materia tiene un solo docente en la sección.</p>
+      <div id="lista-materias"></div>
+      <button type="button" class="boton-texto" id="btn-agregar-materia">+ Agregar materia</button>
+
+      <!-- Las opciones de los selects las llena app.js desde la base de datos -->
+      <template id="plantilla-materia">
+        <div class="asignacion-fila">
+          <select class="mat-materia" aria-label="Materia" required>
+            <option value="">Materia</option>
+          </select>
+          <select class="mat-docente" aria-label="Docente" required></select>
+          <button type="button" class="boton-texto" data-quitar-materia>Quitar</button>
+        </div>
+      </template>
+
+      <div class="modal__acciones">
+        <button type="button" class="boton-secundario" data-cerrar>Cancelar</button>
+        <button type="submit" class="boton-principal" id="btn-guardar-seccion">Guardar sección</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

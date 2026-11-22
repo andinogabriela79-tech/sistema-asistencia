@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesion </title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Para que los elementos con "hidden" realmente se oculten */
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main>
+   <h1 id="titulo">Inicia Sesion</h1>
+
+   <!-- ========== FORMULARIO 1: INICIAR SESIÓN ========== -->
+   <form id="form-login">
+    <label for="usuario">Usuario o correo</label>
+    <input type="text" id="usuario" autocomplete="username" required>
+
+    <label for="contrasena">Contraseña</label>
+    <div class="campo-contrasena">
+      <input type="password" id="contrasena" autocomplete="current-password" required>
+      <button type="button" class="ver-contrasena" data-campo="contrasena"
+              aria-label="Mostrar contraseña" aria-pressed="false">
+        <svg class="ojo-abierto" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+        <svg class="ojo-cerrado" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" />
+          <circle cx="12" cy="12" r="3" />
+          <path d="M3 3l18 18" />
+        </svg>
+      </button>
+    </div>
+
+    <button type="submit">Entrar</button>
+   </form>
+
+   <!-- ========== FORMULARIO 2: ELEGIR CONTRASEÑA NUEVA ========== -->
+   <!-- Solo aparece cuando la cuenta todavía tiene la contraseña temporal -->
+   <form id="form-cambio" hidden>
+    <p>Por seguridad, elige una contraseña nueva antes de continuar.</p>
+
+    <label for="contrasena-actual">Contraseña temporal (la que acabas de usar)</label>
+    <div class="campo-contrasena">
+      <input type="password" id="contrasena-actual" autocomplete="current-password" required>
+      <button type="button" class="ver-contrasena" data-campo="contrasena-actual"
+              aria-label="Mostrar contraseña" aria-pressed="false">
+        <svg class="ojo-abierto" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+        <svg class="ojo-cerrado" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" />
+          <circle cx="12" cy="12" r="3" />
+          <path d="M3 3l18 18" />
+        </svg>
+      </button>
+    </div>
+
+    <label for="contrasena-nueva">Contraseña nueva (mínimo 8 caracteres)</label>
+    <div class="campo-contrasena">
+      <input type="password" id="contrasena-nueva" autocomplete="new-password" minlength="8" required>
+      <button type="button" class="ver-contrasena" data-campo="contrasena-nueva"
+              aria-label="Mostrar contraseña" aria-pressed="false">
+        <svg class="ojo-abierto" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+        <svg class="ojo-cerrado" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" />
+          <circle cx="12" cy="12" r="3" />
+          <path d="M3 3l18 18" />
+        </svg>
+      </button>
+    </div>
+
+    <label for="contrasena-repetir">Repite la contraseña nueva</label>
+    <div class="campo-contrasena">
+      <input type="password" id="contrasena-repetir" autocomplete="new-password" minlength="8" required>
+      <button type="button" class="ver-contrasena" data-campo="contrasena-repetir"
+              aria-label="Mostrar contraseña" aria-pressed="false">
+        <svg class="ojo-abierto" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+        <svg class="ojo-cerrado" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" />
+          <circle cx="12" cy="12" r="3" />
+          <path d="M3 3l18 18" />
+        </svg>
+      </button>
+    </div>
+
+    <button type="submit">Guardar contraseña</button>
+    <button type="button" id="btn-otra-cuenta" class="boton-secundario">Usar otra cuenta</button>
+   </form>
+
+   <p id="mensaje"></p>
+  </main>
+ <script src="login.js"></script>
+</body>
+</html>
